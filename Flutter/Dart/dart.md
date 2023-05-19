@@ -1,3 +1,66 @@
+## 1.Hello Dart
+
+**Dart 入口文件是 main 函数，在Dart中打印内容是print()**
+
+```dart
+// 01-HelloWorld.dart
+/**
+* 函数返回值类型 函数名称(参数列表){
+*  ... 函数体
+* }
+* 下面是一个完整的main函数
+*/
+
+// 在终端输入 dart 01-HelloWord.dart name 会打印出 'name'
+void main(List<String> args) {
+  print(args); // name
+}
+```
+
+## 2.变量声明
+
+### 2.1.明确的变量声明
+
+类型 变量名 = 值
+
+```dart
+String name = '席华莲';
+int age = 20;
+double height = 169.9
+```
+
+### 2.2关键字声明
+
+* var 关键字
+
+  ```dart
+  var message = 'hello dart';
+  message = 'hello';
+  ```
+
+* const 关键字 是用来声明常量的 且在声明时就必须复制
+
+  ```dart
+  // const 是用来声明常量的 且在声明时就必须复制
+  const message1 = 'const 声明的变量';
+  message1 = ''; // 报错
+  ```
+
+* final 关键字 是用来声明常量的 且在声明时可以不赋值
+
+  ```dart
+  final message2;
+  message2 = 'final 声明的常量';
+  ```
+
+* dynamic 关键字 用来声明动态类型
+
+  ```dart
+  dynamic zoe = 'hello';
+  zoe = 134;
+  ```
+
+  
 ## 3.数据类型
 
 #### 3.1 int 和 string 相互转换
