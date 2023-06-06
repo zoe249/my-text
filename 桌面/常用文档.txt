@@ -1,0 +1,13 @@
+http://soc-dev.jjygp.com/receive/buy_receive/buy_order
+
+账号yx_rf   密码 !QAZ2wsx3edc，服务器https://vpn.jiajiayue.com:3380
+账号xzwm    密码 Yxlt4435， 服务器http://60.217.64.169:2280
+
+VMware 17 秘钥 JU090-6039P-08409-8J0QH-2YR7F
+
+呆熊优选
+AppSecret  ： b4fd959d1bdd4e4e1db99d877720c88b
+
+佰富联超市
+AppSecret ： ec7a0168b9ba6848e73cc3606f0bab92
+AppID： wxc975eae44e4d498e

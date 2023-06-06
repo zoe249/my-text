@@ -1,0 +1,12 @@
+1.com 后台管理最新分支                                                     v3.0.5
+2.o2o 后天管理的最新分支                                                   restructurev2.9.1
+3.门店端小程序 communit-project-app-store最新分支          smhwed_0718
+4.环保小程序 yp-environment-protection-app最新分支        develop
+5.环保平台最新分支                                                             attachment-content-0803
+6.环保后端服务最新分支                                                       develop
+7.悦朋官网pc管理端最新分支                                                develop
+8.龙腾官网最新分支                                                             modification_center
+9. 悦朋官网后台服务node  yp-official-website-back-service最新分支 develop
+10. 悦朋官网 yp-official-website                                          vue-lsk
+11.龙腾官网pc管理端 最新分支                                              develop
+12.o2o小程序  double-bass-app-project  最新分支               smhwed_0718

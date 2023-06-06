@@ -1,0 +1,14 @@
+呆熊优选
+AppSecret  ： b4fd959d1bdd4e4e1db99d877720c88b
+
+佰富联超市
+AppSecret ： ec7a0168b9ba6848e73cc3606f0bab92
+AppID： wxc975eae44e4d498e
+
+邻几资产管理
+AppSecret ： dc8e9b660e6e1bdf91e442ce79ca2297
+AppID： wx766040a2a354f9a6
+
+七牛云账号密码
+账号：781311088@qq.com
+密码：qiaokun0123..
