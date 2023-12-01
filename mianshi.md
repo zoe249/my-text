@@ -116,3 +116,16 @@
 * 深拷贝和浅拷贝的区别,实现深拷贝有几种方式
 * 微信小程序的授权流程
 * TypeScript 和 JavaScript 的区别
+
+## 山东德德
+
+事件：`2023-12-01`
+
+* `React`的常用`Hooks`
+* `useState`和`useRef`的区别
+* `JavaScript事件队列`
+* `JavaScript`闭包的作用和弊端，怎么解决弊端
+* `JavaScript`的垃圾回收机制
+* `redux`的作用，和`Vuex`的区别
+* `typescrip`的使用
+* `interface`和`type`的区别
