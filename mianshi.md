@@ -119,13 +119,188 @@
 
 ## 山东德德
 
-事件：`2023-12-01`
+时间：`2023-12-01`
 
-* `React`的常用`Hooks`
-* `useState`和`useRef`的区别
-* `JavaScript事件队列`
-* `JavaScript`闭包的作用和弊端，怎么解决弊端
-* `JavaScript`的垃圾回收机制
-* `redux`的作用，和`Vuex`的区别
-* `typescrip`的使用
-* `interface`和`type`的区别
+- `React`的常用`Hooks`
+
+#### `useState`和`useRef`的区别
+
+  - `useState`
+
+    `useState`是`React Hooks`的基础，它允许在函数式组件中管理状态和更新状态。
+
+    返回值：
+
+    1. 当前的`state`，在首次渲染时，会匹配初始默认值
+    2. `set`函数，它可以将`state`更新为不同的值并<font color="red">触发渲染</font>
+
+    ```javascript
+    import { useState } from 'react'
+    const MyComponent = () => {
+        // const [state, setState] = useState()
+        const [age, setAge] = useState(8)
+        const handleClick = () => {
+            setAge(18)
+        }
+        return (
+            <button onClick={handleClick}>
+              点击！
+            </button>
+      	);
+    }
+    ```
+
+  - `useRef`
+
+    `ref`对象的`current`属性的初始值，可以是任意类型的初始值
+
+    `current` 可以直接赋值给任意值
+    
+
+    返回值：
+    
+    
+
+    * `current`初始值为传递的默认值(`initialValue`)
+
+      <font color='red'>常用来操作DOM</font>
+
+    ```javascript
+    import { useRef } from 'react'
+    function MyComponent() {
+        const ref = useRef(0)
+        const handleClick = () => {
+            ref.current = 1
+        }
+        return (
+            <button onClick={handleClick}>
+              点击！
+            </button>
+      	);
+    }
+    ```
+
+    
+
+    
+
+#### `JavaScript事件队列 Event Loop ?`
+  `JavaScript` 的整体代码
+
+  - 同步任务 同步代码
+  - 异步任务 异步代码
+    - 宏任务
+      - `setInterval()`
+      - `setTimeout()`
+      - `setImmediate()`
+      - `ajax`网络请求
+      - 事件绑定
+    - 微任务
+      - `new Promise()`后的`than`与`catch`函数
+      - `new MutaionObserver()`
+      - `process.nextTick()`
+
+  ![](https://img-blog.csdnimg.cn/012721d236ee4b4b96df67fc8e65570c.jpeg)
+
+#### `JavaScript`闭包的作用和弊端，怎么解决弊端
+
+* 定义：闭包就是函数的嵌套，内部函数使用外部函数的变量，当响应的函数执行完之后，被引用的变量并不会被`JavaScript`回收，不正当的使用闭包会造成<font color='red'>内存泄漏</font>
+
+  ```javascript
+  function f1() {
+      var count = 0
+      return function() {
+          count++
+          console.log(count)
+          return count
+      }
+  }
+  
+  let f = f1()
+  f() // 1 
+  f() // 2 打印值 count 会累计
+  f() // 3 因为内部的 count 并不会被 JavaScript 回收
+  
+  f = null // 释放内存
+  f() // 会报错
+  ```
+
+#### `JavaScript`的垃圾回收机制
+
+**垃圾回收是JavaScript中内存管理的重要组成部分。开发人员不需要手动分配和释放内存。垃圾回收机制可以自动处理内存的分配和释放，减轻了开发人员的负担，并且降低了内存泄漏的风险，它的主要目的是自动地检测和释放不再使用的内存，以便程序能够更高效地利用系统资源。**
+
+* 标记清除
+
+  **当变量进入上下文，比如在函数 内部声明一个变量时，这个变量会被加上存在于上下文中的标记。而在上下文中的变量，逻辑上讲，永远不应该释放它们的内存，因为只要上下文中的代码在运行，就有可能用到它们。当变量离开上下文时， 也会被加上离开上下文的标记**
+
+  1. 垃圾收集器在运行时会给内存中的所有变量都加上一个<font color="red">删除标记</font>，假设内存中所有对象都是垃圾，全标记为 0
+  2. 然后从<font color='red'>根对象</font>开始深度遍历，把不是垃圾的节点改成1
+  3. 清除所有标记为0的垃圾，销毁并回收它们所占用的内存空间
+  4. 最后把内存中的所有对象标志修改为0，等待下一轮的垃圾回收
+
+  * 缺点：
+    1. 内存碎片化(内存零零散散的存放，造成资源浪费)
+    2. 再分配时遍历次数多，如果一直没有找到合适的内存块大小，那么会遍历空闲链表(保存堆中所有空闲地址空间形成的链表)，一直遍历到尾端
+    3. 不会立即回收资源
+
+* 引用计数
+
+  **引用计算的核心思想是对每个值都记录它被引用的次数。声明变量并给他赋一个引用值,这个值的应用数为1**
+
+  `如果同一个值又被赋给另一个变量，那么引用数加1。类似的，如果保存该值引用的变量被其他的值给覆盖了，那么引用数减1。当一个值的引用数为0时，就说明没有办法再访问到这个值了，因此可以安全的回收其内存了。垃圾回收程序下次运行的时候就会释放引用数为0的值的内存`
+
+  * 缺点
+
+    1. 时间开销大，因为引用计数算法需要维护引用数，一旦发现引用数发生改变需要立即对引用数进行修改
+    2. 最大的缺点还是无法解决循环引用的问题
+
+    ```javascript
+    
+    function foo() {
+      const A = {}; // 在引用计数算法下，A和B不会被回收
+      const B = {};
+    
+      A.foo = B;
+      B.foo = A;
+    
+      return "hi";
+    }
+    
+    foo();
+    
+    ```
+
+    
+
+#### `redux`的作用，和`Vuex`的区别
+
+* `Redux` 是用来做状态管理的，会发送一个`action`
+
+  * `Action`是一个具有`type`字段的普通`JavaScript`对象，用来描述应用程序中发生了什么事
+
+  * `Reducer` 是一个函数，接受当前的`state`和一个`action`，必要时决定如何更新状态，并返回一个新状态`(state, action) => newState`它必须是一个纯函数
+
+  * `Store`仓库，当前`Redux`的状态存储在一个名为`store`的对象中，并有一个`getState`的方法，它返回当前的状态
+
+    ```javascript
+    import { createStore } from 'redux'
+    const store = createStore(counterReducer)
+    console.log(store.getStore())
+    ```
+
+  * `Dispatch`发送，更新`state`的唯一方法就是调用`store.dispatch()`并传入一个`action`对象
+
+    ```javascript
+    store.dispatch({ type: 'counter/increment' })
+    ```
+
+    
+
+#### `typescrip`的使用
+
+#### `interface`和`type`的区别
+
+#### `Web Worker`浏览器多线程
+
+  为了利用多核CPU的计算能力，`HTML5`提出`Web Worker`标准，允许`JavaScript`脚本创建多个线程，但是子线程完全受主线程控制，且不得操作`DOM`。所以，这个新标准并没有改变JavaScript单线程的本质
+
